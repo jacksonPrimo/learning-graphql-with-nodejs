@@ -1,15 +1,26 @@
 import { ApolloServer, gql } from 'apollo-server'
+import { randomUUID } from 'node:crypto'
 
-const users: string[] = []
+interface User {
+  id: string
+  name: string
+}
+
+const users: User[] = []
 
 const typeDefs = gql`
+  type User {
+    id: String!
+    name: String!
+  }
+
   type Query {
     helloWorld: String!
-    users: [String!]!
+    users: [User!]!
   }
 
   type Mutation {
-    createUser(name: String!): String!
+    createUser(name: String!): User!
   }
 `
 
@@ -26,10 +37,13 @@ const server = new ApolloServer({
     },
 
     Mutation: {
-      createUser: (parent, args, ctx) =>{
-        console.log(args)
-        users.push(args.name)
-        return 'john doe'
+      createUser: (_, args) =>{
+        const user: User = {
+          id: randomUUID(),
+          name: args.name
+        }
+        users.push(user)
+        return user
       }
     }
   }
