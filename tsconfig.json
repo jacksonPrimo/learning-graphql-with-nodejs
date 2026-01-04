@@ -7,9 +7,12 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
+    // "target": "ES2023",                     
+    // "module": "ESNext",         
+    "target": "es2021",
+    "module": "commonjs",
     "types": [],
+
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
@@ -32,6 +35,12 @@
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
 
+    // "esModuleInterop": true,
+    // "moduleResolution": "node",
+    // "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
